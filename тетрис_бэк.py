@@ -65,7 +65,7 @@ async def create_initial_figure(user_id, chat_id):
     global current_figure_x, current_figure_y, current_tetris_figure
     current_tetris_figure, vertical_offset = generate_tetris_figure()
     current_figure_x = grid_size // 2 - len(current_tetris_figure[0]) // 2
-    current_figure_y = 1  # Измените это значение, чтобы фигура появилась в верхней части стикера
+    current_figure_y = 1  # Изменить это значение, чтобы фигура появилась в верхней части стикера
     await update_grid(user_id, chat_id, current_tetris_figure)
     logging.info(f"Initial figure created for user {user_id}. Coordinates: x={current_figure_x}, y={current_figure_y}.")
 
@@ -84,7 +84,7 @@ def handle_bottom_collision_sync(user_id, chat_id, tetris_figure):
     print(">>> generate_tetris_figure")
     current_tetris_figure, _ = generate_tetris_figure()
     current_figure_x = grid_size // 2 - len(current_tetris_figure[0]) // 2
-    current_figure_y = 1  # Измените это значение, чтобы фигура появилась в верхней части стикера
+    current_figure_y = 1  # Изменить это значение, чтобы фигура появилась в верхней части стикера
     falling = False  # Сбрасываем статус падения
 
     print(">>> ensure_future (update_grid)")
@@ -96,13 +96,13 @@ async def handle_bottom_collision(user_id, chat_id, tetris_figure):
     current_figure_y -= 1  # Возвращаем фигуру на одну клетку назад
     update_current_position(current_figure_x, current_figure_y, tetris_figure)
 
-    # Здесь можно добавить код для проверки заполненных рядов и их удаления
+    # Проверка заполненных рядов и их удаления
     check_and_remove_rows()
 
     # Генерируем новую случайную фигуру и помещаем ее в центр
     current_tetris_figure, _ = generate_tetris_figure()
     current_figure_x = grid_size // 2 - len(current_tetris_figure[0]) // 2
-    current_figure_y = 1  # Измените это значение, чтобы фигура появилась в верхней части стикера
+    current_figure_y = 1  # Изменить это значение, чтобы фигура появилась в верхней части стикера
     falling = False  # Сбрасываем статус падения
 
     await update_grid(user_id, chat_id, current_tetris_figure)
@@ -320,7 +320,6 @@ async def update_grid(user_id, chat_id, tetris_figure):
 
     current_index = get_current_index(user_id)
     sticker_data = generate_sticker_with_figure(current_index, tetris_figure, current_figure_x, current_figure_y)
-
 
     update_previous_position(current_figure_x, current_figure_y, tetris_figure)
     current_figure_y += 1
